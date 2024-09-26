@@ -14,18 +14,8 @@ const App: React.FC = () => {
       <Routes>
         <Route
           path="/"
-          element={
-            accessToken ? (
-              <ShowPosts accessToken={accessToken} />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/login"
-          element={<LoginPage setAccessToken={setAccessToken} />}
-        />
+          element={accessToken ? (<ShowPosts accessToken={accessToken} />) : (<Navigate to="/login" replace />)}/>
+        <Route path="/login" element={<LoginPage setAccessToken={setAccessToken} />}/>
       </Routes>
     </BrowserRouter>
   );

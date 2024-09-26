@@ -1,17 +1,14 @@
 import axios from 'axios';
 
-// API-Basis-URL
-const AUTH_API_URL = 'http://localhost:5000'; // Authentifizierungsserver
-const POSTS_API_URL = 'http://localhost:3000'; // Posts-Server
+const AUTH_API_URL = 'http://localhost:5000'; 
+const POSTS_API_URL = 'http://localhost:3000'; 
 
 
-// Typen für die Authentifizierungsantworten
 interface AuthResponse {
   accessToken: string;
   refreshToken: string;
 }
 
-// Login-Funktion
 export const login = async (username: string): Promise<AuthResponse> => {
   try {
     const response = await axios.post(`${AUTH_API_URL}/login`, { username });
@@ -21,7 +18,6 @@ export const login = async (username: string): Promise<AuthResponse> => {
   }
 };
 
-// Access Token mit Refresh Token aktualisieren (optional implementieren)
 export const refreshAccessToken = async (
   refreshToken: string
 ): Promise<string> => {
@@ -35,7 +31,6 @@ export const refreshAccessToken = async (
   }
 };
 
-// Logout-Funktion
 export const logout = async (accessToken: string): Promise<void> => {
   try {
     await axios.delete(`${AUTH_API_URL}/logout`, {
@@ -48,7 +43,6 @@ export const logout = async (accessToken: string): Promise<void> => {
   }
 };
 
-// Posts abrufen
 export const getPosts = async (accessToken: string) => {
   try {
     const response = await axios.get(`${POSTS_API_URL}/post`, {
